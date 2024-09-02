@@ -1,0 +1,14 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: k8sspringdemo-app
+  namespace: k8sspringdemo
+  labels:
+    team: k8sspringdemo
+spec:
+  selector:
+    matchLabels:
+      app: k8sspringdemo
+  endpoints:
+    - port: web
+      path: /prometheusMetrics

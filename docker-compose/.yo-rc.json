@@ -1,0 +1,10 @@
+{
+  "generator-jhipster": {
+    "appsFolders": ["jhipster8-demo", "k8sSpringDemo"],
+    "directoryPath": "../../",
+    "jhipsterVersion": "8.7.0",
+    "jwtSecretKey": "NmFiMzU2YmEzYWQwYTZjOTU2YTNlYTlhMTQ0ODcyODhiOWYyNjI2ZTBjNGU1ZmMxMGE5ZWMwMWJiMjgwMDMxM2JlZTAzNTUyODM5OWU3ZmIyZWRkZTVmODE2OGZjN2JkNjE1MQ==",
+    "monitoring": "prometheus",
+    "serviceDiscoveryType": "no"
+  }
+}

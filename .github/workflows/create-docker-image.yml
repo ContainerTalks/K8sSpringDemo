@@ -1,0 +1,56 @@
+name: Build and Push Docker Images to GHCR
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        architecture: [amd64, arm64]
+    env:
+      GHCR_IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/your-app-name
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build Docker image
+      run: npm run java:docker${{ matrix.architecture == 'arm64' && ':arm64' || '' }}
+
+    - name: Log in to GHCR
+      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+    - name: Tag and push Docker image
+      run: |
+        docker tag your-app:latest $GHCR_IMAGE_NAME:${{ matrix.architecture }}-latest
+        docker push $GHCR_IMAGE_NAME:${{ matrix.architecture }}-latest
+
+  manifest:
+    runs-on: ubuntu-latest
+    needs: build
+    env:
+      GHCR_IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/your-app-name
+    steps:
+    - name: Log in to GHCR
+      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+    - name: Create and push multi-arch Docker image manifest
+      run: |
+        docker manifest create $GHCR_IMAGE_NAME:latest \
+          $GHCR_IMAGE_NAME:amd64-latest \
+          $GHCR_IMAGE_NAME:arm64-latest
+        docker manifest push $GHCR_IMAGE_NAME:latest

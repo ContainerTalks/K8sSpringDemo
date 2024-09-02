@@ -1,0 +1,21 @@
+commonLabels:
+  app.kubernetes.io/genereted-by: JHipster
+
+namespace: k8sspringdemo
+
+resources:
+  - namespace.yml
+  # Individual apps
+  - k8sspringdemo-k8s/k8sspringdemo-deployment.yml
+  - k8sspringdemo-k8s/k8sspringdemo-service.yml
+  - k8sspringdemo-k8s/k8sspringdemo-postgresql.yml
+  - k8sspringdemo-k8s/jwt-secret.yml
+  - k8sspringdemo-k8s/k8sspringdemo-prometheus-sm.yml
+  # monitoring prometheus
+  - monitoring-k8s/jhipster-prometheus-cr.yml
+  - monitoring-k8s/jhipster-prometheus-crd.yml
+  - monitoring-k8s/jhipster-grafana.yml
+  - monitoring-k8s/jhipster-grafana-dashboard.yml
+# service discovery eureka/consul
+
+patchesJson6902:

@@ -1,0 +1,18 @@
+{
+  "generator-jhipster": {
+    "appsFolders": ["k8sSpringDemo"],
+    "dbRandomPassword": "9d1c837842130c9cd52ff30c84d5edf6434fa9e161cabe813b3b7a62f22f",
+    "deploymentApplicationType": "monolith",
+    "directoryPath": "../../",
+    "dockerPushCommand": "docker push",
+    "dockerRepositoryName": "locahost:5001",
+    "ingressDomain": null,
+    "ingressType": null,
+    "jhipsterVersion": "8.7.0",
+    "jwtSecretKey": "OTI5NjJmMjU2ZjRmMTUwZjk1NWI0Y2IwNTY5NGI4NjdkYTJiZWIxOWM5ZDcwN2UxYzk3MjNjYzhiYjlhZDc5YmQyMDQ1ZDAwYWU0OWNhYTRkYWQ0NmZiOWM0MmY1YTkxMDY5Yg==",
+    "kubernetesNamespace": "k8sspringdemo",
+    "kubernetesServiceType": "NodePort",
+    "monitoring": "prometheus",
+    "serviceDiscoveryType": "no"
+  }
+}
